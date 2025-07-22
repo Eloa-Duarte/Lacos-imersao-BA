@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block title %}Laços{% endblock %}
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+    
+        <main>
+            <form action="sign-in" method="POST">
+            <h1>sign in</h1>
+            <div>
+                <label for ="sign-in name">nome</label>
+                <input type text id="sign-in name" placeholder="Seu nome aqui"  name="nome">
+            </div>
+
+            <div>
+                <label for ="sign-in password">Senha<label>
+                <input type="password" id="sign-in password" name="senha">
+            </div>
+
+
+            <div class="form-group">
+                    <label for="sign-in nivel">Seu nível de timidez</label>
+                    <select id="sign-in nivel" name="nivel" required>
+                        <option value="" disabled selected>Seu nível de timidez</option>
+                        <option value="1">1 - Menos tímido</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5 - Mais tímido</option>
+                    </select>
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label for="preferences">Escolha oque mais te define</label>
+                    <select id="preferences" name="preference" required>
+                        <option value="" disabled selected>Escolha oque mais te define</option>
+                        <option value="1">Jogos</option>
+                        <option value="2">Música</option>
+                        <option value="3">RPG</option>
+                        <option value="4">Estudos</option>
+                        <option value="5">Animes</option>
+                    </select>
+                </div>
+
+
+            <button id="sign-in-button">Enviar!</button>
+ 
+            </form>
+
+
+        </main>
+
+    </body>
