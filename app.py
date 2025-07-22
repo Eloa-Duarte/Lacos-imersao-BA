@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def login():
-    return render_template("login.html")
+    return render_template("sign-in.html")
 
 
 @app.route("/log-in", methods=["GET", "POST"])
@@ -20,7 +20,7 @@ def add():
     
 
 @app.route("/sign-in", methods=["GET", "POST"])
-def add():
+def addd():
     if request.method == "POST":
         with open("usuarios.csv", mode="r", encoding="utf-8") as csv_file:
             reader = list(csv.reader(csv_file))
@@ -48,10 +48,10 @@ def add():
 
 
 
-        return f"Log in bem sucedido."
+        return f"Sign in bem sucedido."
 
     else:
-        return "Erro no log in."
+        return "Erro no sign in."
     
 
     
