@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Yesteryear&display=swap');
+#titulo{
+    font-family: "Yesteryear", cursive;
+    font-size: 60px;
+}
+.cabecalho{
+    background-color: rgb(16, 0, 109);
+    width: 100%;
+
+}
+.navbar-item{
+    color: white;
+}
+.navbar-item:hover{
+    color: black;
+}
+#margem{
+    margin-left: 0px;
+    margin-right: 100px;
+    width: 100%
+}
+#imagusuario{
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-right: 30px;
+    float: right;
+}
+footer{
+    background-color:rgb(16, 0, 109);
+    padding: 10px;
+}
+.white{
+    color: white;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+}
+main.section {
+    flex: 1;
+}
+.cardsflex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+main{
+    margin-bottom: auto;
+}
+
+/*---------- Cards ---------- */
+.card{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    max-width:200px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.856);
+    padding-inline: 15px; 
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 5px 4px;
+}
+
+.card p, h3{
+    padding: 0px;
+    margin: 0px;
+}
+
+.card h3{
+    padding-bottom: 5px;
+}
+
+.TextoDoCard{
+    justify-content: left;
+}
+
+.ImagemCentralizada{
+    display:flex;
+    width: auto;
+    justify-content: center;
+}
+
+.imagens{
+    max-width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.CaixaCards{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.CaixaCards a{
+    color: inherit;
+    text-decoration: none;
+}
+/*-------------------- */
+
+<title>Laços - Quem Somos</title> <style> body { margin: 0; font-family: 'Georgia', serif; background: #e0f4fb; /* tom azul claro */ color: #0b044d; /* azul escuro */ }
+header {
+  background: #0b044d; /* azul escuro */
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 48px;
+  margin: 0;
+}
+
+header p {
+  font-size: 18px;
+  margin: 5px 0 0;
+}
+
+main {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  font-family: 'Georgia', serif;
+  font-size: 32px;
+  color: #0b044d;
+  border-left: 6px solid #0b044d;
+  padding-left: 12px;
+}
+
+section p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #0b044d;
+  font-size: 24px;
+  line-height: 1;
+}
+
+footer {
+  background: #0b044d;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
