@@ -12,7 +12,7 @@
             <button class="menu-icon" onclick="window.history.back()">&#9664;</button> </div>
         <div class="header-center">
             <h1 class="logo">Laços</h1>
-            <p class="tagline">Cultivando momentos e colhendo experiências</p>
+            <p class="tagline">Cultivando Momentos e Colhendo Experiências</p>
         </div>
         <div class="header-right">
             <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
@@ -21,7 +21,7 @@
 
     <main class="main-content">
         <section id="eventDetailPage" class="event-detail-page">
-            <h2>Carregando detalhes do evento...</h2>
+            <h2>Carregando Detalhes do Evento...</h2>
             </section>
     </main>
 
