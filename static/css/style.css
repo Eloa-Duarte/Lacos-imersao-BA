@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Yesteryear&display=swap');
+#titulo{
+    font-family: "Yesteryear", cursive;
+    font-size: 60px;
+}
+.cabecalho{
+    background-color: rgb(16, 0, 109);
+    width: 100%;
+
+}
+.navbar-item{
+    color: white;
+}
+.navbar-item:hover{
+    color: black;
+}
+#margem{
+    margin-left: 0px;
+    margin-right: 100px;
+    width: 100%
+}
+#imagusuario{
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-right: 30px;
+    float: right;
+}
+footer{
+    background-color:rgb(16, 0, 109);
+    padding: 10px;
+}
+.white{
+    color: white;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main.section {
+    flex: 1;
+}
+.cardsflex{
+    display: flex;
+
+}
