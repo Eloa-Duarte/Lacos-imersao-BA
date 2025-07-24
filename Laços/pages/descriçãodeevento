@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Evento - Laços</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-icon" onclick="window.history.back()">&#9664;</button> </div>
+        <div class="header-center">
+            <h1 class="logo">Laços</h1>
+            <p class="tagline">Cultivando Momentos e Colhendo Experiências</p>
+        </div>
+        <div class="header-right">
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section id="eventDetailPage" class="event-detail-page">
+            <h2>Carregando Detalhes do Evento...</h2>
+            </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const eventId = window.location.pathname.split('/').pop();
+            const eventDetailPage = document.getElementById('eventDetailPage');
+
+            if (!eventId) {
+                eventDetailPage.innerHTML = '<p>ID do evento não fornecido.</p>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/events/${eventId}`);
+                if (!response.ok) {
+                    throw new Error('Evento não encontrado');
+                }
+                const event = await response.json();
+
+                eventDetailPage.innerHTML = `
+                    <img src="${event.imageUrl || 'https://via.placeholder.com/400x200?text=Detalhes+do+Evento'}" alt="${event.title}" style="width:100%; height: auto; border-radius: 8px; margin-bottom: 20px;">
+                    <h2>${event.title} <span class="status-badge ${event.status.toLowerCase().replace(' ', '-')}">${event.status}</span></h2>
+                    <p><strong>Data:</strong> ${new Date(event.date).toLocaleDateString('pt-BR')}</p>
+                    <p><strong>Horário:</strong> ${event.time}</p>
+                    <p><strong>Local:</strong> ${event.location}</p>
+                    <p><strong>Descrição:</strong> ${event.description}</p>
+                    <p><strong>Participantes:</strong> ${event.participants.length} pessoa(s)</p>
+                    <div class="action-buttons">
+                        <button class="participar" data-event-id="${event.id}" data-is-participating="${event.isParticipating ? 'true' : 'false'}">
+                            ${event.isParticipating ? 'Não Participar' : 'Participar'}
+                        </button>
+                        <button class="voltar" onclick="window.history.back()">Voltar</button>
+                    </div>
+                `;
+
+                document.querySelector('.action-buttons .participar').addEventListener('click', async (e) => {
+                    const eventId = e.target.dataset.eventId;
+                    const isParticipating = e.target.dataset.isParticipating === 'true';
+
+                    try {
+                        const method = isParticipating ? 'DELETE' : 'POST';
+                        const url = `/api/events/${eventId}/participate`;
+
+                        const res = await fetch(url, {
+                            method: method,
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+
+                        if (res.ok) {
+                            const message = await res.json();
+                            alert(message.message);
+                            e.target.dataset.isParticipating = (!isParticipating).toString();
+                            e.target.textContent = isParticipating ? 'Participar' : 'Não Participar';
+                            window.location.reload();
+                        } else {
+                            const errorData = await res.json();
+                            alert(`Erro: ${errorData.message}`);
+                        }
+                    } catch (error) {
+                        console.error('Erro ao participar/não participar:', error);
+                        alert('Ocorreu um erro ao processar sua solicitação.');
+                    }
+                });
+
+
+            } catch (error) {
+                console.error('Erro ao buscar detalhes do evento:', error);
+                eventDetailPage.innerHTML = `<p style="color: red;">${error.message}. Tente novamente mais tarde.</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
