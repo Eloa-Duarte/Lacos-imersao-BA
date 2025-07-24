@@ -40,3 +40,73 @@ body {
 main.section {
     flex: 1;
 }
+
+<title>Laços - Quem Somos</title> <style> body { margin: 0; font-family: 'Georgia', serif; background: #e0f4fb; /* tom azul claro */ color: #0b044d; /* azul escuro */ }
+header {
+  background: #0b044d; /* azul escuro */
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 48px;
+  margin: 0;
+}
+
+header p {
+  font-size: 18px;
+  margin: 5px 0 0;
+}
+
+main {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  font-family: 'Georgia', serif;
+  font-size: 32px;
+  color: #0b044d;
+  border-left: 6px solid #0b044d;
+  padding-left: 12px;
+}
+
+section p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #0b044d;
+  font-size: 24px;
+  line-height: 1;
+}
+
+footer {
+  background: #0b044d;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
