@@ -1,9 +1,58 @@
-<title> Laços - Criar um novo Evento </title> <style> body { margin: 0; font-family: 'Georgia', serif; background: #e0f4fb; /* tom azul claro */ color: #0b044d; /* azul escuro */ }
-header {
-  background: #0b044d; /* azul escuro */
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-} 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Novo Evento - Laços</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-icon" onclick="window.history.back()">&#9664;</button> </div>
+        <div class="header-center">
+            <h1 class="logo">Laços</h1>
+            <p class="tagline">Cultivando Momentos e Colhendo Experiências</p>
+        </div>
+        <div class="header-right">
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
+        </div>
+    </header>
 
-  
+    <main class="main-content">
+        <section class="create-event-page">
+            <h2>Criar Novo Evento</h2>
+            <form id="createEventForm" class="create-event-form">
+                <label for="title">Título do Evento:</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="date">Data:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Horário:</label>
+                <input type="time" id="time" name="time" required>
+
+                <label for="location">Local:</label>
+                <input type="text" id="location" name="location" required>
+
+                <label for="description">Descrição:</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <label for="imageUrl">URL da Imagem (Opcional):</label>
+                <input type="text" id="imageUrl" name="imageUrl" placeholder="Ex: https://example.com/imagem.jpg">
+
+                <label for="status">Status do Evento:</label>
+                <select id="status" name="status">
+                    <option value="pendente">Pendente</option>
+                    <option value="confirmado">Confirmado</option>
+                    <option value="em andamento">Em Andamento</option>
+                    <option value="cancelado">Cancelado</option>
+                </select>
+
+                <button type="submit">Criar Evento</button>
+            </form>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>
