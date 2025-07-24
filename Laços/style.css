@@ -40,3 +40,7 @@ body {
 main.section {
     flex: 1;
 }
+.cardsflex{
+    display: flex;
+
+}
