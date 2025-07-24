@@ -38,7 +38,7 @@ def addd():
             request.form.get("nome"),
             request.form.get("senha"),
             request.form.get("nivel"),
-            request.form.get("preferences"),
+            request.form.get("preference"),
             ]
 
         with open("usuarios.csv", mode="a", encoding="utf-8", newline="") as csv_file:
