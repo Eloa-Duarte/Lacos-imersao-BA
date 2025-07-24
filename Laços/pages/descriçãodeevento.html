@@ -9,10 +9,11 @@
 <body>
     <header class="header">
         <div class="header-left">
-            <button class="menu-icon" onclick="window.history.back()">&#9664;</button> </div>
+            <button class="menu-icon" onclick="window.history.back()">&#9664;</button>
+        </div>
         <div class="header-center">
             <h1 class="logo">Laços</h1>
-            <p class="tagline">Cultivando momentos e colhendo experiências</p>
+            <p class="tagline">Cultivando Momentos e Colhendo Experiências</p>
         </div>
         <div class="header-right">
             <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
@@ -21,31 +22,52 @@
 
     <main class="main-content">
         <section id="eventDetailPage" class="event-detail-page">
-            <h2>Carregando detalhes do evento...</h2>
-            </section>
+            <h2>Carregando Detalhes do Evento...</h2>
+        </section>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-            const eventId = window.location.pathname.split('/').pop();
             const eventDetailPage = document.getElementById('eventDetailPage');
+            const eventId = window.location.pathname.split('/').pop();
+
+            const displayMessage = (message, isError = false) => {
+                eventDetailPage.innerHTML = `<p style="text-align: center; color: ${isError ? 'red' : 'inherit'};">${message}</p>`;
+                if (!isError) {
+                    eventDetailPage.innerHTML += `
+                        <div class="action-buttons" style="justify-content: center; margin-top: 20px;">
+                            <button class="voltar" onclick="window.location.href='/'">Voltar para a lista de eventos</button>
+                        </div>
+                    `;
+                }
+            };
 
             if (!eventId) {
-                eventDetailPage.innerHTML = '<p>ID do evento não fornecido.</p>';
+                displayMessage('ID do evento não fornecido. Por favor, selecione um evento válido.', true);
                 return;
             }
 
             try {
                 const response = await fetch(`/api/events/${eventId}`);
+
                 if (!response.ok) {
-                    throw new Error('Evento não encontrado');
+                    if (response.status === 404) {
+                        displayMessage('Evento não encontrado. Ele pode ter sido removido ou o link está incorreto.', false);
+                    } else {
+                        const errorData = await response.json().catch(() => ({ message: 'Erro desconhecido.' }));
+                        displayMessage(`Erro ao carregar o evento: ${errorData.message || 'Houve um problema com a requisição.'}`, true);
+                    }
+                    return;
                 }
+
                 const event = await response.json();
+
+                const formattedDate = new Date(event.date).toLocaleDateString('pt-BR');
 
                 eventDetailPage.innerHTML = `
                     <img src="${event.imageUrl || 'https://via.placeholder.com/400x200?text=Detalhes+do+Evento'}" alt="${event.title}" style="width:100%; height: auto; border-radius: 8px; margin-bottom: 20px;">
                     <h2>${event.title} <span class="status-badge ${event.status.toLowerCase().replace(' ', '-')}">${event.status}</span></h2>
-                    <p><strong>Data:</strong> ${new Date(event.date).toLocaleDateString('pt-BR')}</p>
+                    <p><strong>Data:</strong> ${formattedDate}</p>
                     <p><strong>Horário:</strong> ${event.time}</p>
                     <p><strong>Local:</strong> ${event.location}</p>
                     <p><strong>Descrição:</strong> ${event.description}</p>
@@ -59,12 +81,12 @@
                 `;
 
                 document.querySelector('.action-buttons .participar').addEventListener('click', async (e) => {
-                    const eventId = e.target.dataset.eventId;
+                    const eventIdToParticipate = e.target.dataset.eventId;
                     const isParticipating = e.target.dataset.isParticipating === 'true';
 
                     try {
                         const method = isParticipating ? 'DELETE' : 'POST';
-                        const url = `/api/events/${eventId}/participate`;
+                        const url = `/api/events/${eventIdToParticipate}/participate`;
 
                         const res = await fetch(url, {
                             method: method,
@@ -73,26 +95,25 @@
                             }
                         });
 
+                        const responseData = await res.json();
+
                         if (res.ok) {
-                            const message = await res.json();
-                            alert(message.message);
+                            alert(responseData.message);
                             e.target.dataset.isParticipating = (!isParticipating).toString();
                             e.target.textContent = isParticipating ? 'Participar' : 'Não Participar';
                             window.location.reload();
                         } else {
-                            const errorData = await res.json();
-                            alert(`Erro: ${errorData.message}`);
+                            alert(`Erro: ${responseData.message || 'Ocorreu um erro ao processar sua solicitação.'}`);
                         }
                     } catch (error) {
                         console.error('Erro ao participar/não participar:', error);
-                        alert('Ocorreu um erro ao processar sua solicitação.');
+                        alert('Ocorreu um erro de conexão ao tentar processar sua solicitação.');
                     }
                 });
 
-
             } catch (error) {
-                console.error('Erro ao buscar detalhes do evento:', error);
-                eventDetailPage.innerHTML = `<p style="color: red;">${error.message}. Tente novamente mais tarde.</p>`;
+                console.error('Erro geral ao buscar detalhes do evento:', error);
+                displayMessage('Não foi possível carregar os detalhes do evento. Verifique sua conexão ou tente novamente.', true);
             }
         });
     </script>
