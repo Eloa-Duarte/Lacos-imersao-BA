@@ -25,3 +25,18 @@
     margin-right: 30px;
     float: right;
 }
+footer{
+    background-color:rgb(16, 0, 109);
+    padding: 10px;
+}
+.white{
+    color: white;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main.section {
+    flex: 1;
+}
